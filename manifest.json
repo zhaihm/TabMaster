@@ -1,0 +1,23 @@
+{
+    "name": "Tab Master",
+    "version": "1.0",
+    "description": "Manage browser tabs",
+
+    "browser_action": {
+        "browser_style": true,
+        "default_icon": {
+            "16": "icon.png",
+            "32": "icon.png"
+        },
+        "default_title": "Tab Master",
+        "default_popup": "popup.html"
+    },
+
+    "manifest_version": 2,
+
+    "permissions": [
+        "<all_urls>",
+        "tabs",
+        "clipboardWrite"
+    ]
+}
