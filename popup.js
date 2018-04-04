@@ -35,6 +35,10 @@ function copyText(text) {
 
 function applyAutoRefresh() {
     let interval = document.getElementById('autoRefreshInterval').value;
+    if (interval === '') {
+        return;
+    }
+    
     let intervalId = setInterval(function() {
         browser.tabs.query({}).then((tabs) => {
             tabs.forEach(function(tab) {
