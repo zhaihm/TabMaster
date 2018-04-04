@@ -38,9 +38,12 @@ function applyAutoRefresh() {
     let intervalId = setInterval(function() {
         browser.tabs.query({}).then((tabs) => {
             tabs.forEach(function(tab) {
-                browser.tabs.update(tab.id, {
-                    url: tab.url
-                });
+                // Exclude 'about:xx' URLs, because Firefox doesn't allow to update their URLs
+                if (!tab.url.startsWith('about:')) {
+                    browser.tabs.update(tab.id, {
+                        url: tab.url
+                    });
+                }
             });
         });
     }, interval*1000);
