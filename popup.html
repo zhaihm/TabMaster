@@ -5,8 +5,14 @@
 </head>
 <body>
 
-<div style="width:200px;height:100px;">
-    <a id="copyAll">Copy All Tab Urls</a>
+<div style="width:300px;height:500px;">
+    <div><a id="copyAll">Copy All Tab Urls</a></div>
+    <div>
+        Auto Refresh Tab: <input id="autoRefreshInterval" />seconds<br>
+        <input type="button" id="applyAutoRefresh" value="Apply" />
+        <input type="button" id="cancelAutoRefresh" value="Cancel" />
+        <input type="hidden" id="intervalId" />
+    </div>
 </div>
 
 <script src="popup.js"></script>
