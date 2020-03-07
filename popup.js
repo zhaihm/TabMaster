@@ -8,10 +8,13 @@ window.onload = function() {
     document.getElementById('cancelAutoRefresh').addEventListener('click', function() {
         cancelAutoRefresh();
     });
+    document.getElementById('previewAll').addEventListener('click', () => {
+        previewAllTabs();
+    })
 };
 
 function copyAllTabUrls() {
-    browser.tabs.query({}).then((tabs) => {
+    chrome.tabs.query({}, tabs => {
         let copiedStr = '';
         tabs.forEach(function(tab) {
             copiedStr += tab.url + '\r\n';
@@ -40,11 +43,11 @@ function applyAutoRefresh() {
     }
     
     let intervalId = setInterval(function() {
-        browser.tabs.query({}).then((tabs) => {
+        chrome.tabs.query({}).then((tabs) => {
             tabs.forEach(function(tab) {
                 // Exclude 'about:xx' URLs, because Firefox doesn't allow to update their URLs
                 if (!tab.url.startsWith('about:')) {
-                    browser.tabs.update(tab.id, {
+                    chrome.tabs.update(tab.id, {
                         url: tab.url
                     });
                 }
@@ -60,4 +63,10 @@ function cancelAutoRefresh() {
     clearInterval(intervalId);
 
     document.getElementById('intervalId').value = '';
+}
+
+function previewAllTabs() {
+    chrome.tabs.query({}, tabs => {
+        
+    });
 }
